@@ -1,0 +1,14 @@
+@import './base.css';
+
+
+#btn{
+  border: 1px solid blue; 
+  display: inline-block; 
+  border-radius: 30%; 
+  cursor: pointer;
+}
+
+#btn:hover{
+  color: white;
+  background-color: blue;
+}
