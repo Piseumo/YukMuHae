@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class FreeBoardReqDto {
 
-    @NotNull
+//    @NotNull
     private Boolean f_avail;
 
     private Long f_idx;

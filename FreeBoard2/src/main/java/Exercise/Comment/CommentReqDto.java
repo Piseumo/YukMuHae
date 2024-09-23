@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Data
 public class CommentReqDto {
 
-    @NotNull
     private Boolean c_avail;
 
     private Long c_idx;

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("comment")
+@RequestMapping("commentYMH")
 @RequiredArgsConstructor
 @CrossOrigin
 public class CommentController {
@@ -36,7 +36,7 @@ public class CommentController {
                 .orElseThrow(() -> new RuntimeException("FreeBoard not found"));
 
         Comment comment = Comment.builder()
-                .c_avail(commentReqDto.getC_avail())
+                .c_avail(true)
                 .c_password(commentReqDto.getC_password())
                 .c_nickname(commentReqDto.getC_nickname())
                 .c_body(commentReqDto.getC_body())

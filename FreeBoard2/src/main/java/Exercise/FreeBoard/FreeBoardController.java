@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("freeboard")
+@RequestMapping("freeboardYMH")
 @RequiredArgsConstructor
 @CrossOrigin
 public class FreeBoardController {
@@ -30,7 +30,7 @@ public class FreeBoardController {
     @PostMapping
     public ResponseEntity<FreeBoard> createFreeBoard(@Valid @RequestBody FreeBoardReqDto freeBoardReqDto){
         FreeBoard freeBoard = FreeBoard.builder()
-                .f_avail(freeBoardReqDto.getF_avail())
+                .f_avail(true)
                 .f_password(freeBoardReqDto.getF_password())
                 .f_nickname(freeBoardReqDto.getF_nickname())
                 .f_title(freeBoardReqDto.getF_title())

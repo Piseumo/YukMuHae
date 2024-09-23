@@ -19,13 +19,14 @@ import java.time.LocalDateTime;
 public class FreeBoard {
 
     @Column(nullable = false)
-    private Boolean f_avail;
+    private Boolean f_avail = true;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long f_idx;
 
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime f_timestamp;
 
     @Column(length = 16,nullable = false)

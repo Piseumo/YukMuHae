@@ -20,26 +20,25 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Comment {
 
+    @EmbeddedId
+    private CommentId id;
 
     @Column(nullable = false)
-    private Boolean c_avail;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long c_idx;
+    private Boolean c_avail = true;
 
     @ManyToOne
-    @JoinColumn(name = "c_response_index")
-    private Comment parentComment;
+    @JoinColumn(name = "c_response_idx")
+    private Comment parentComment;  // 부모 댓글이 있는 경우 그 댓글을 참조
 
     @OneToMany(mappedBy = "parentComment")  // 부모 댓글에 달린 대댓글 목록
     private List<Comment> childComments = new ArrayList<>();  // 대댓글들
 
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime c_timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "f_idx", nullable = false)
+    @JoinColumn(name = "f_idx",nullable = false)
     private FreeBoard freeBoard;
 
     @Column(length = 16,nullable = false)
