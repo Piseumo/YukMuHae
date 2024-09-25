@@ -4,13 +4,14 @@ import YukMuHae.FreeBoard.FreeBoard;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Builder
+@NoArgsConstructor
 @IdClass(CommentId.class)
 public class Comment {
 

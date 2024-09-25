@@ -29,6 +29,10 @@ public class Comment {
     @Column(name = "c_idx")
     private Long c_idx;
 
+    @ManyToOne
+    @JoinColumn(name = "f_idx", insertable = false, updatable = false)
+    private FreeBoard freeBoard;
+
     @Column(name = "c_response_index")
     private Long c_response_index = null;
 
@@ -40,9 +44,6 @@ public class Comment {
     @Column(name = "c_timestamp")
     private LocalDateTime c_timestamp;
 
-    @ManyToOne
-    @JoinColumn(name = "f_idx", insertable = false, updatable = false)
-    private FreeBoard freeBoard;
 
     @Column(name = "c_password", length = 16,nullable = false)
     private String c_password;

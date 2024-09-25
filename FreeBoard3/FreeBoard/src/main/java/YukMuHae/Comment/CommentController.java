@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,22 +40,39 @@ public class CommentController {
 //
 //    }
 
-    @PostMapping("/builder")
-    public ResponseEntity<String> addCommentBuilder(@Valid @RequestBody CommentRequestDto commentRequestDto){
-        FreeBoard freeBoard = freeBoardRepository.findById(commentRequestDto.getF_idx())
-                .orElseThrow(()-> new RuntimeException("게시물을 찾을 수 없습니다"));
-        Comment comment = Comment.builder()
-                .freeBoard(freeBoard)
-                .c_avail(commentRequestDto.getC_avail())
-                .c_response_index(commentRequestDto.getC_response_index())
-                .c_password(commentRequestDto.getC_password())
-                .c_nickname(commentRequestDto.getC_nickname())
-                .c_body(commentRequestDto.getC_body())
-                .c_timestamp(LocalDateTime.now())
-                .build();
-        commentRepository.save(comment);
+//    @PostMapping("/builder")
+//    public ResponseEntity<String> addCommentBuilder(@Valid @RequestBody CommentRequestDto commentRequestDto){
+//        FreeBoard freeBoard = freeBoardRepository.findById(commentRequestDto.getF_idx())
+//                .orElseThrow(()-> new RuntimeException("게시물을 찾을 수 없습니다"));
+//        Comment comment = Comment.builder()
+//                .freeBoard(freeBoard)
+//                .c_avail(commentRequestDto.getC_avail())
+//                .c_response_index(commentRequestDto.getC_response_index())
+//                .c_password(commentRequestDto.getC_password())
+//                .c_nickname(commentRequestDto.getC_nickname())
+//                .c_body(commentRequestDto.getC_body())
+//                .c_timestamp(LocalDateTime.now())
+//                .build();
+//        commentRepository.save(comment);
+//
+//        return ResponseEntity.ok("ok");
+//    }
+@PostMapping
+public ResponseEntity<Comment> createComment(@Valid @RequestBody CommentRequestDto commentRequestDto) {
+    ModelMapper modelMapper = new ModelMapper();
+    Comment comment = modelMapper.map(commentRequestDto, Comment.class);
 
-        return ResponseEntity.ok("ok");
-    }
+//        Comment comment = Comment.builder()
+//                .avail(true)
+//                .password(commentReqDto.getC_password())
+//                .nickname(commentReqDto.getC_nickname())
+//                .body(commentReqDto.getC_body())
+//                .timestamp(commentReqDto.getC_timestamp())
+//                .freeBoard(freeBoard)
+//                .build();
+
+    commentRepository.save(comment);
+    return ResponseEntity.ok(comment);
+}
 
 }
