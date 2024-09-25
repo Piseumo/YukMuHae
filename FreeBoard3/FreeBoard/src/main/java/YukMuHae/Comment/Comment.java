@@ -2,7 +2,6 @@ package YukMuHae.Comment;
 
 import YukMuHae.FreeBoard.FreeBoard;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,7 +21,7 @@ public class Comment {
     private Long f_idx;
 
     @ManyToOne
-    @JoinColumn(name = "f_idx", nullable = false)
+    @JoinColumn(name = "f_idx", nullable = false, insertable = false, updatable = false)
     private FreeBoard freeBoard;
 
     @Column(nullable = false)

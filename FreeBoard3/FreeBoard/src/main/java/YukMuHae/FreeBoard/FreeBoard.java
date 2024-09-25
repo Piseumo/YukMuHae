@@ -1,13 +1,19 @@
 package YukMuHae.FreeBoard;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FreeBoard {
 
     private Boolean f_avail = true;
@@ -31,5 +37,6 @@ public class FreeBoard {
 
     @Column(length = 5000)
     private String f_body;
+
 
 }
