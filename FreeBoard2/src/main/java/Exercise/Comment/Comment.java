@@ -12,42 +12,45 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Builder
-@Data
 @EntityListeners(AuditingEntityListener.class)
+@IdClass(CommentId.class)
 public class Comment {
 
-    @EmbeddedId
-    private CommentId id;
+    @Id
+    @Column(name = "f_idx")
+    private Long f_idx;
 
-    @Column(nullable = false)
+    @Id
+    @Column(name = "c_idx")
+    private Long c_idx;
+
+    @Column(name = "c_response_index")
+    private Long c_response_index = null;
+
+
+    @Column(name = "c_avail", nullable = false)
     private Boolean c_avail = true;
 
-    @ManyToOne
-    @JoinColumn(name = "c_response_idx")
-    private Comment parentComment;  // 부모 댓글이 있는 경우 그 댓글을 참조
-
-    @OneToMany(mappedBy = "parentComment")  // 부모 댓글에 달린 대댓글 목록
-    private List<Comment> childComments = new ArrayList<>();  // 대댓글들
-
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "c_timestamp")
     private LocalDateTime c_timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "f_idx",nullable = false)
+    @JoinColumn(name = "f_idx", insertable = false, updatable = false)
     private FreeBoard freeBoard;
 
-    @Column(length = 16,nullable = false)
+    @Column(name = "c_password", length = 16,nullable = false)
     private String c_password;
 
-    @Column(length = 32,nullable = false)
+    @Column(name = "c_nickname", length = 32,nullable = false)
     private String c_nickname;
 
-    @Column(length = 2000,nullable = false)
+    @Column(name = "c_body", length = 2000,nullable = false)
     private String c_body;
 
 

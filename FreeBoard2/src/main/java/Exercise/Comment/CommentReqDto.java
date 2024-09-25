@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
 @Data
 public class CommentReqDto {
 
-    private Boolean c_avail;
+    private Long c_response_index = null;
+
+    private Boolean c_avail = true;
 
     private Long c_idx;
-
-    private Long parentCommentId;
 
     private LocalDateTime c_timestamp;
 
     @NotNull
-    private Long freeBoardId;
+    private Long f_idx;
 
     @Length(min = 1,max = 16)
     @NotEmpty

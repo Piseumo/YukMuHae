@@ -30,12 +30,12 @@ public class FreeBoardController {
     @PostMapping
     public ResponseEntity<FreeBoard> createFreeBoard(@Valid @RequestBody FreeBoardReqDto freeBoardReqDto){
         FreeBoard freeBoard = FreeBoard.builder()
-                .f_avail(true)
-                .f_password(freeBoardReqDto.getF_password())
-                .f_nickname(freeBoardReqDto.getF_nickname())
-                .f_title(freeBoardReqDto.getF_title())
-                .f_body(freeBoardReqDto.getF_body())
-                .f_timestamp(freeBoardReqDto.getF_timestamp())
+                .avail(true)
+                .password(freeBoardReqDto.getF_password())
+                .nickname(freeBoardReqDto.getF_nickname())
+                .title(freeBoardReqDto.getF_title())
+                .body(freeBoardReqDto.getF_body())
+                .timestamp(freeBoardReqDto.getF_timestamp())
                 .build();
 
         freeBoardRepository.save(freeBoard);

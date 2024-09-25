@@ -18,26 +18,28 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class FreeBoard {
 
-    @Column(nullable = false)
-    private Boolean f_avail = true;
+    @Column(name = "f_avail",nullable = false)
+    private Boolean avail = true;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long f_idx;
+    @Column(name = "f_idx")
+    private Long id;
 
     @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime f_timestamp;
+    @Column(name ="f_timestamp",updatable = false)
+    private LocalDateTime timestamp;
 
-    @Column(length = 16,nullable = false)
-    private String f_password;
+    @Column(name = "f_password",length = 16,nullable = false)
+    private String password;
 
-    @Column(length = 32,nullable = false)
-    private String f_nickname;
 
-    @Column(length = 80,nullable = false)
-    private String f_title;
+    @Column(name = "f_nickname",length = 32,nullable = false)
+    private String nickname;
 
-    @Column(length = 5000,nullable = false)
-    private String f_body;
+    @Column(name = "f_title", length = 80,nullable = false)
+    private String title;
+
+    @Column(name ="f_body" ,length = 5000,nullable = false)
+    private String body;
 }
